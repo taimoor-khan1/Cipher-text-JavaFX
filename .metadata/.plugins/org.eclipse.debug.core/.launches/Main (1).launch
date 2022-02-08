@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+        <listEntry value="/Cinemaprojectfx/src/Main.java"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+        <listEntry value="1"/>
+    </listAttribute>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_SHOW_CODEDETAILS_IN_EXCEPTION_MESSAGES" value="true"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="Main"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="Cinemaprojectfx"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Cinemaprojectfx"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="module-path &quot;module-path &quot;your-path\lib&quot; --add-modules javafx.controls,javafx.fxml&quot; --add-modules javafx.controls,javafx.fxml"/>
+</launchConfiguration>

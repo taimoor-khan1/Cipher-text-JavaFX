@@ -1,0 +1,179 @@
+package application;
+import java.util.concurrent.TimeUnit;
+import java.io.*;
+import java.util.Scanner;
+
+import javax.crypto.EncryptedPrivateKeyInfo;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class Substitution_cipher {
+	Stage stage;
+	Scene scene;
+	long stencrypt,etencrypt,stdecrypt,etdecrypt;
+    public static final String str="abcdefghijklmnopqrstuvwxyz";
+    
+     public String encrypt(String plaint,int key)
+    {
+    	stencrypt= System.nanoTime();
+    
+        plaint=plaint.toLowerCase();
+        String ciphert="";
+        for(int i=0;i<plaint.length();i++)
+        {
+            int charpos=str.indexOf(plaint.charAt(i));
+            int keyval=(charpos+key)%26;
+            char replaceval=str.charAt(keyval);
+            ciphert=ciphert+replaceval;
+        }
+        etencrypt= System.nanoTime();
+        return ciphert;
+    }
+
+
+   public String decrypt(String ciphert,int key)
+    {
+    	 stdecrypt = System.nanoTime();
+        ciphert=ciphert.toLowerCase();
+        String plaint="";
+        for(int i=0;i<ciphert.length();i++)
+        {
+            int charpos=str.indexOf(ciphert.charAt(i));
+            int keyval=(charpos-key)%26;
+            if(keyval<0)
+            {
+                keyval=str.length()+keyval;
+            }
+            char replaceval=str.charAt(keyval);
+            plaint=plaint+replaceval;
+        }
+         etdecrypt = System.nanoTime();
+        return plaint;
+    }
+
+    public Substitution_cipher() {
+		// TODO Auto-generated constructor stub
+    	stage=new Stage();
+    	stage();
+    	stage.setTitle("Substitution Cipher");
+		stage.setScene(scene);
+		stage.show();
+    }
+
+    void stage() {
+    	HBox hb=new HBox();
+    	Label lb=new Label("Substitution ciper");
+    	hb.getChildren().add(lb);
+    	hb.setAlignment(Pos.CENTER);
+    	Label lbltext=new Label("Enter plain text");
+    	TextField text=new TextField();
+    	Label lblkey=new Label("Enter Key");
+    	TextField Key=new TextField();
+    	Label encryptext=new Label("Encrypted text");
+    	Label encryp=new Label();
+    	Label dencryptext=new Label("Decrypted text");
+    	Label dencryp=new Label();
+    	Button btnencryp=new Button("Encrypt");
+    	
+    	
+    	
+    	
+    	Label label1=new Label("Encryption time");
+    	Label sten=new Label("Start time");
+    	Label sten1=new Label();
+    	Label eten=new Label("End time");
+    	Label eten1=new Label();
+    	 
+    	Label label2=new Label("Encryption time");
+    	Label stde=new Label("Start time");
+    	Label stde1=new Label(Long.toString(stdecrypt));
+    	Label etde=new Label("End time");
+    	Label etde1=new Label(Long.toString(etdecrypt));
+    	
+    	
+    	btnencryp.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				try {int space=Integer.parseInt(Key.getText()); 
+				
+				encryp.setText(encrypt(text.getText(), space));
+				text.setText(null);
+				
+				sten1.setText(Long.toString(stdecrypt));
+				eten1.setText(Long.toString(etdecrypt));
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
+    	
+    	Button btndencryp=new Button("Decrypt");
+    	btndencryp.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				try {int space=Integer.parseInt(Key.getText()); 
+				
+				dencryp.setText(decrypt(encryp.getText(), space));
+				encryp.setText(null);
+				stde1.setText(Long.toString(stencrypt));
+				etde1.setText(Long.toString(etencrypt));
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
+    	
+    	
+    	
+    	HBox hb1=new HBox();
+    	hb1.setSpacing(20);
+    	hb1.getChildren().addAll(lbltext,text);
+    	HBox hb2=new HBox();
+    	hb2.setSpacing(20);
+    	hb2.getChildren().addAll(lblkey,Key);
+    	HBox hb3=new HBox();
+      	hb3.setSpacing(20);
+    	hb3.getChildren().addAll(btnencryp,btndencryp);
+    	HBox hb4=new HBox();
+      	hb4.setSpacing(20);
+    	hb4.getChildren().addAll(encryptext,encryp);
+    	HBox hb5=new HBox();
+      	hb5.setSpacing(20);
+    	hb5.getChildren().addAll(dencryptext,dencryp);
+    	
+    	
+    	HBox hb6=new HBox();
+      	hb6.setSpacing(20);
+    	hb6.getChildren().addAll(label1,sten,sten1,eten,eten1);
+    	HBox hb7=new HBox();
+      	hb7.setSpacing(20);
+    	hb7.getChildren().addAll(label2,stde,stde1,etde,etde1);
+    	
+    	
+    	
+    	VBox vb=new VBox();
+    	vb.setSpacing(20);
+    	vb.getChildren().addAll(lb,hb1,hb2,hb3,hb4,hb5,hb6,hb7);
+    	scene=new Scene(vb,400,400);
+    	
+    	
+    	
+    }
+}
